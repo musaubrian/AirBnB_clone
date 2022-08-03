@@ -2,6 +2,7 @@
 """console to handle the commands to be used"""
 import cmd
 
+
 class HBNBcommand(cmd.Cmd):
     """
     handle the commands
@@ -10,11 +11,24 @@ class HBNBcommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_emptyline(self):
-        """handles an empty line"""
+        """
+        handles an empty line,
+        keeps prompt alive
+        """
         return False
 
     def do_EOF(self, arg):
-        """handles EOF or ctrl+D"""
+        """
+        handles EOF or ctrl+D,
+        exits interpretor
+        """
+        return True
+
+    def do_quit(self, arg):
+        """
+        handles `quit` command,
+        exits the interpretor
+        """
         return True
 
 
