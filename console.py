@@ -33,7 +33,6 @@ class HBNBcommand(cmd.Cmd):
         return False
 
 
-
 if __name__ == "__main__":
     """starting point fo the cmd loop"""
     HBNBcommand().cmdloop()
