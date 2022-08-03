@@ -31,6 +31,12 @@ class BaseModel:
                 if "__class__" not in k:
                     setattr(self, k, v)
 
+
+    def save(self):
+        """updates created at time"""
+        self.updated_at = datetime.now()
+
+
     def __str__(self):
         """
         return string representation of the class
