@@ -13,6 +13,10 @@ class HBNBcommand(cmd.Cmd):
         """handles an empty line"""
         return False
 
+    def do_EOF(self, arg):
+        """handles EOF or ctrl+D"""
+        return True
+
 
 if __name__ == "__main__":
     """starting point fo the cmd loop"""
