@@ -9,6 +9,10 @@ class HBNBcommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def do_emptyline(self):
+        """handles an empty line"""
+        return False
+
 
 if __name__ == "__main__":
     """starting point fo the cmd loop"""
