@@ -30,7 +30,7 @@ class HBNBcommand(cmd.Cmd):
         handles `quit` command,
         exits the interpretor
         """
-        return False
+        return True
 
 
 if __name__ == "__main__":
