@@ -45,6 +45,7 @@ class BaseModel:
                 "%Y-%m-%dT%H:%M:%S.%f")
         dict_rep["updated_at"] = self.updated_at.strftime(
                 "%Y-%m-%dT%H:%M:%S.%f")
+        return (dict_rep)
 
     def __str__(self):
         """
