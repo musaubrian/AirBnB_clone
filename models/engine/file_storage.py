@@ -2,6 +2,7 @@
 """file storage module"""
 
 import json
+import models
 
 
 class FileStorage:
@@ -39,3 +40,18 @@ class FileStorage:
 
         with open(FileStorage.__path, "w") as file:
             json.dump(objects_dict, file)
+
+    def reload(self):
+        """
+        reads from the json file
+        `deserializes` json file
+        """
+        try:
+            with open(FileStorage.__path, "w") as file:
+                FileStorage.__objects = json.loads(file)
+            for k, v in FileStorage.__objects.items():
+                class_name = v["__class__"]
+                class_name = models.classes[class_name]
+                FileStorage.__objects[k] = class_name(**v)
+        except FileNotFoundError:
+            print("File not found")
