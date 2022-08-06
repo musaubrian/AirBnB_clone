@@ -54,4 +54,4 @@ class FileStorage:
                 class_name = models.my_classes[class_name]
                 FileStorage.__objects[k] = class_name(**v)
         except FileNotFoundError:
-            print("File not found")
+            pass

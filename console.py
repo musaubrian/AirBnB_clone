@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
 """console to handle the commands to be used"""
 import cmd
-
+import shlex
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Reviews
+from models.state import State
+from models.user import User
 
 class HBNBcommand(cmd.Cmd):
     """
@@ -32,7 +40,23 @@ class HBNBcommand(cmd.Cmd):
         """
         return True
 
+    def do_create(self, args):
+        """
+        create a new instance and save it to json file
+        """
+
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        try:
+            args = shlex.split(args)
+            new_instance = eval(args[0])()
+            new_instance.save()
+            print(new_instance.id)
+        except:
+            print("** class doesn't exist **")
+
 
 if __name__ == "__main__":
-    """starting point fo the cmd loop"""
+    """starting point for the cmd loop"""
     HBNBcommand().cmdloop()
