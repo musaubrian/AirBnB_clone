@@ -11,6 +11,7 @@ from models.review import Reviews
 from models.state import State
 from models.user import User
 
+
 class HBNBcommand(cmd.Cmd):
     """
     handle the commands
@@ -53,8 +54,38 @@ class HBNBcommand(cmd.Cmd):
             new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
-        except:
+
+        except NameError:
             print("** class doesn't exist **")
+
+    def do_update(self, args):
+        """
+        updates the existing instance using
+        class name and id
+        """
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        storage = FileStorage()
+        storage.reload()
+        obj_dict = storage.all()
+        try:
+            eval(args[0])
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        key = args[0] + "." + args[1]
+        key = args[0] + "." + args[1]
+        try:
+            value = obj_dict[key]
+            print(value)
+        except KeyError:
+            print("** no instance found **")
+
 
 
 if __name__ == "__main__":
