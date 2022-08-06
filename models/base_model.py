@@ -32,20 +32,19 @@ class BaseModel:
                 if "__class__" not in k:
                     setattr(self, k, v)
 
-
     def save(self):
         """updates created at time"""
         self.updated_at = datetime.now()
         models.storage.save()
 
-
     def to_dict(self):
         """return dictionary representation of base_model"""
         dict_rep = dict(self.__dict__)
         dict_rep["__class__"] = self.__class__.__name__
-        dict_rep["created_at"] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        dict_rep["updated_at"] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-
+        dict_rep["created_at"] = self.created_at.strftime(
+                "%Y-%m-%dT%H:%M:%S.%f")
+        dict_rep["updated_at"] = self.updated_at.strftime(
+                "%Y-%m-%dT%H:%M:%S.%f")
 
     def __str__(self):
         """

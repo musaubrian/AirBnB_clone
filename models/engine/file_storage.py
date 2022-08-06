@@ -25,7 +25,7 @@ class FileStorage:
         args:
             obj: instance object
         """
-        
+
         k = f"{obj.__class__.__name__}.{obj.id}"
         v = obj
         FileStorage.__objects[k] = v
