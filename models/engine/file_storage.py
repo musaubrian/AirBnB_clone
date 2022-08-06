@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""file stroage module"""
+"""file storage module"""
 
 import json
 
