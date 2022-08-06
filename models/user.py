@@ -2,7 +2,7 @@
 """user module"""
 
 
-from base_model import BaseModel as base
+from models.base_model import BaseModel as base
 
 
 class User(base):

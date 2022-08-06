@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """module place for Airbnb clone"""
-from base_model import BaseModel as base
+from models.base_model import BaseModel as base
 
 
 class Place(base):
