@@ -3,8 +3,7 @@
 
 from uuid import uuid4
 from datetime import datetime
-from engine.file_storage import FileStorage as storage
-import json
+import models
 
 
 class BaseModel:
@@ -19,6 +18,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
         else:
             kwargs["created_at"] = datetime.strptime(
                     kwargs["created_at"],
@@ -36,7 +36,7 @@ class BaseModel:
     def save(self):
         """updates created at time"""
         self.updated_at = datetime.now()
-        storage().save()
+        models.storage.save()
 
 
     def to_dict(self):
