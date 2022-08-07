@@ -5,4 +5,4 @@ from models.base_model import BaseModel as base
 
 class Amenity(base):
     """defines amenity class inheriting class base"""
-    name = " "
+    name = ""
