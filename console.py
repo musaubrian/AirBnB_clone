@@ -12,7 +12,7 @@ from models.state import State
 from models.user import User
 
 
-class HBNBcommand(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """
     handle the commands
     """
@@ -55,7 +55,7 @@ class HBNBcommand(cmd.Cmd):
         """
 
         if len(args) == 0:
-            print(HBNBcommand.__errors[0])
+            print(HBNBCommand.__errors[0])
             return
         try:
             args = shlex.split(args)
@@ -64,7 +64,7 @@ class HBNBcommand(cmd.Cmd):
             print(new_instance.id)
 
         except NameError:
-            print(HBNBcommand.__errors[1])
+            print(HBNBCommand.__errors[1])
 
     def do_update(self, args):
         """
@@ -73,16 +73,16 @@ class HBNBcommand(cmd.Cmd):
         """
         args = shlex.split(args)
         if len(args) == 0:
-            print(HBNBcommand.__errors[0])
+            print(HBNBCommand.__errors[0])
             return
         if len(args) == 1:
-            print(HBNBcommand.__errors[2])
+            print(HBNBCommand.__errors[2])
             return
         if len(args) == 2:
-            print(HBNBcommand.__errors[4])
+            print(HBNBCommand.__errors[4])
             return
         if len(args) == 3:
-            print(HBNBcommand.__errors[5])
+            print(HBNBCommand.__errors[5])
             return
         storage = FileStorage()
         storage.reload()
@@ -90,14 +90,14 @@ class HBNBcommand(cmd.Cmd):
         try:
             eval(args[0])()
         except NameError:
-            print(HBNBcommand.__errors[1])
+            print(HBNBCommand.__errors[1])
             return
         k = args[0] + "." + args[1]
         try:
             value = obj_dict[k]
             print(value)
         except KeyError:
-            print(HBNBcommand.__errors[3])
+            print(HBNBCommand.__errors[3])
 
     def do_show(self, args):
         """
@@ -107,10 +107,10 @@ class HBNBcommand(cmd.Cmd):
 
         args = shlex.split(args)
         if len(args) == 0:
-            print(HBNBcommand.__errors[0])
+            print(HBNBCommand.__errors[0])
             return
         elif len(args) == 1:
-            print(HBNBcommand.__errors[2])
+            print(HBNBCommand.__errors[2])
             return
         storage = FileStorage()
         storage.reload()
@@ -118,14 +118,14 @@ class HBNBcommand(cmd.Cmd):
         try:
             eval(args[0])
         except NameError:
-            print(HBNBcommand.__errors[1])
+            print(HBNBCommand.__errors[1])
             return
 
         k = args[0] + "." + args[1]
         try:
             print(obj_dict[k])
         except KeyError:
-            print(HBNBcommand.__errors[3])
+            print(HBNBCommand.__errors[3])
 
     def do_destroy(self, args):
         """
@@ -135,10 +135,10 @@ class HBNBcommand(cmd.Cmd):
 
         args = shlex.split(args)
         if len(args) == 0:
-            print(HBNBcommand.__errors[0])
+            print(HBNBCommand.__errors[0])
             return
         if len(args) == 1:
-            print(HBNBcommand.__errors[2])
+            print(HBNBCommand.__errors[2])
             return
 
         storage = FileStorage()
@@ -148,7 +148,7 @@ class HBNBcommand(cmd.Cmd):
         try:
             eval(args[0])
         except NameError:
-            print(HBNBcommand.__errors[1])
+            print(HBNBCommand.__errors[1])
             return
 
         k = args[0] + "." + args[1]
@@ -156,7 +156,7 @@ class HBNBcommand(cmd.Cmd):
         try:
             del (obj_dict[k])
         except KeyError:
-            print(HBNBcommand.__errors[3])
+            print(HBNBCommand.__errors[3])
             return
         storage.save()
 
@@ -174,7 +174,7 @@ class HBNBcommand(cmd.Cmd):
             if len(args) != 0:
                 eval(args)
         except NameError:
-            print(HBNBcommand.__errors[1])
+            print(HBNBCommand.__errors[1])
             return
         for k, v in objects.items():
             if len(args) != 0:
@@ -187,5 +187,4 @@ class HBNBcommand(cmd.Cmd):
 
 
 if __name__ == "__main__":
-    """starting point for the cmd loop"""
-    HBNBcommand().cmdloop()
+    HBNBCommand().cmdloop()
