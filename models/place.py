@@ -7,7 +7,7 @@ class Place(base):
     """
     class place containing
     """
-    
+
     city_id = ""
     user_id = ""
     name = ""
