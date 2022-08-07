@@ -87,7 +87,7 @@ class HBNBcommand(cmd.Cmd):
         storage = FileStorage()
         storage.reload()
         obj_dict = storage.all()
-        try:        
+        try:
             eval(args[0])()
         except NameError:
             print(HBNBcommand.__errors[1])
@@ -112,7 +112,7 @@ class HBNBcommand(cmd.Cmd):
         elif len(args) == 1:
             print(HBNBcommand.__errors[2])
             return
-        storage  = FileStorage()
+        storage = FileStorage()
         storage.reload()
         obj_dict = storage.all()
         try:
@@ -154,7 +154,7 @@ class HBNBcommand(cmd.Cmd):
         k = args[0] + "." + args[1]
 
         try:
-            del(obj_dict[k])
+            del (obj_dict[k])
         except KeyError:
             print(HBNBcommand.__errors[3])
             return
@@ -162,7 +162,7 @@ class HBNBcommand(cmd.Cmd):
 
     def do_all(self, args):
         """
-         Prints all string representation 
+         Prints all string representation
          of all instances based or not on the class name
         """
 
