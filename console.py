@@ -32,7 +32,7 @@ class HBNBcommand(cmd.Cmd):
         handles an empty line,
         keeps prompt alive
         """
-        return False
+        return
 
     def do_EOF(self, arg):
         """
@@ -108,6 +108,7 @@ class HBNBcommand(cmd.Cmd):
         args = shlex.split(args)
         if len(args) == 0:
             print(HBNBcommand.__errors[0])
+            return
         elif len(args) == 1:
             print(HBNBcommand.__errors[2])
             return
@@ -120,13 +121,69 @@ class HBNBcommand(cmd.Cmd):
             print(HBNBcommand.__errors[1])
             return
 
-        k = f"{args[0]} . {args[1]}"
-        k = f"{args[0]} . {args[1]}"
-
+        k = args[0] + "." + args[1]
         try:
             print(obj_dict[k])
         except KeyError:
             print(HBNBcommand.__errors[3])
+
+    def do_destroy(self, args):
+        """
+        deletes an instance using class name
+        and id
+        """
+
+        args = shlex.split(args)
+        if len(args) == 0:
+            print(HBNBcommand.__errors[0])
+            return
+        if len(args) == 1:
+            print(HBNBcommand.__errors[2])
+            return
+
+        storage = FileStorage()
+        storage.reload()
+        obj_dict = storage.all()
+
+        try:
+            eval(args[0])
+        except NameError:
+            print(HBNBcommand.__errors[1])
+            return
+
+        k = args[0] + "." + args[1]
+
+        try:
+            del(obj_dict[k])
+        except KeyError:
+            print(HBNBcommand.__errors[3])
+            return
+        storage.save()
+
+    def do_all(self, args):
+        """
+         Prints all string representation 
+         of all instances based or not on the class name
+        """
+
+        obj_list = []
+        storage = FileStorage()
+        storage.reload()
+        objects = storage.all()
+        try:
+            if len(args) != 0:
+                eval(args)
+        except NameError:
+            print(HBNBcommand.__errors[1])
+            return
+        for k, v in objects.items():
+            if len(args) != 0:
+                if type(v) is eval(args):
+                    obj_list.append(v)
+            else:
+                obj_list.append(v)
+
+        print(obj_list)
 
 
 if __name__ == "__main__":
