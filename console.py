@@ -78,14 +78,43 @@ class HBNBcommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
             return
-        key = args[0] + "." + args[1]
-        key = args[0] + "." + args[1]
+        k = args[0] + "." + args[1]
+        k = args[0] + "." + args[1]
         try:
-            value = obj_dict[key]
+            value = obj_dict[k]
             print(value)
         except KeyError:
             print("** no instance found **")
 
+    def do_show(self, args):
+        """
+        display string representaion of an instance
+        using class name and id
+        """
+
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+            return
+        storage  = FileStorage()
+        storage.reload()
+        obj_dict = storage.all()
+        try:
+            eval(args[0])
+        except NameError:
+            print("** class doesn't exist **")
+            return
+
+        k = f"{args[0]} . {args[1]}"
+        k = f"{args[0]} . {args[1]}"
+
+        try:
+#            value = obj_dict[k]
+            print(obj_dict[k])
+        except KeyError:
+            print("** no instance found **")
 
 
 if __name__ == "__main__":
