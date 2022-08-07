@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """console to handle the commands to be used"""
+
 import cmd
 import shlex
 from models.engine.file_storage import FileStorage
@@ -116,14 +117,16 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         obj_dict = storage.all()
         try:
-            eval(args[0])
+            eval(args[0])()
         except NameError:
             print(HBNBCommand.__errors[1])
             return
 
         k = args[0] + "." + args[1]
+        k = args[0] + "." + args[1]
         try:
-            print(obj_dict[k])
+            val = obj_dict[k]
+            print(val)
         except KeyError:
             print(HBNBCommand.__errors[3])
 
@@ -165,7 +168,6 @@ class HBNBCommand(cmd.Cmd):
          Prints all string representation
          of all instances based or not on the class name
         """
-
         obj_list = []
         storage = FileStorage()
         storage.reload()
@@ -176,18 +178,18 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print(HBNBCommand.__errors[1])
             return
-        for k, v in objects.items():
+        for key, val in objects.items():
             if len(args) != 0:
-                if type(v) is eval(args):
-                    obj_list.append(v)
+                if type(val) is eval(args):
+                    obj_list.append(str(val))
             else:
-                obj_list.append(v)
+                obj_list.append(str(val))
 
         print(obj_list)
 
     def do_count(self, args):
         '''
-            Counts/retrieves the number of instances.
+            Counts the number of instances.
         '''
         obj_list = []
         storage = FileStorage()
