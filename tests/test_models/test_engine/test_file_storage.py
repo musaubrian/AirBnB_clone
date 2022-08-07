@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""unittests for file storage class"""
+"""unittests for filestorage class"""
 
 import unittest
 
 class test_FileStorage(unittest.TestCase):
-    """
-    unittests
-    """
+    """unittest"""
     pass

@@ -32,7 +32,7 @@ class HBNBcommand(cmd.Cmd):
         handles an empty line,
         keeps prompt alive
         """
-        return
+        pass
 
     def do_EOF(self, arg):
         """
