@@ -18,6 +18,14 @@ class HBNBcommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
+    __errors = [
+            "** class name missing **",
+            "** class doesn't exist **",
+            "** instance id missing **",
+            "** no instance found **",
+            "** attribute name missing **",
+            "** value missing **"
+            ]
 
     def do_emptyline(self):
         """
@@ -47,7 +55,7 @@ class HBNBcommand(cmd.Cmd):
         """
 
         if len(args) == 0:
-            print("** class name missing **")
+            print(HBNBcommand.__errors[0])
             return
         try:
             args = shlex.split(args)
@@ -56,7 +64,7 @@ class HBNBcommand(cmd.Cmd):
             print(new_instance.id)
 
         except NameError:
-            print("** class doesn't exist **")
+            print(HBNBcommand.__errors[1])
 
     def do_update(self, args):
         """
@@ -65,26 +73,31 @@ class HBNBcommand(cmd.Cmd):
         """
         args = shlex.split(args)
         if len(args) == 0:
-            print("** class name missing **")
+            print(HBNBcommand.__errors[0])
             return
         if len(args) == 1:
-            print("** instance id missing **")
+            print(HBNBcommand.__errors[2])
+            return
+        if len(args) == 2:
+            print(HBNBcommand.__errors[4])
+            return
+        if len(args) == 3:
+            print(HBNBcommand.__errors[5])
             return
         storage = FileStorage()
         storage.reload()
         obj_dict = storage.all()
-        try:
-            eval(args[0])
+        try:        
+            eval(args[0])()
         except NameError:
-            print("** class doesn't exist **")
+            print(HBNBcommand.__errors[1])
             return
-        k = args[0] + "." + args[1]
         k = args[0] + "." + args[1]
         try:
             value = obj_dict[k]
             print(value)
         except KeyError:
-            print("** no instance found **")
+            print(HBNBcommand.__errors[3])
 
     def do_show(self, args):
         """
@@ -94,9 +107,9 @@ class HBNBcommand(cmd.Cmd):
 
         args = shlex.split(args)
         if len(args) == 0:
-            print("** class name missing **")
+            print(HBNBcommand.__errors[0])
         elif len(args) == 1:
-            print("** instance id missing **")
+            print(HBNBcommand.__errors[2])
             return
         storage  = FileStorage()
         storage.reload()
@@ -104,17 +117,16 @@ class HBNBcommand(cmd.Cmd):
         try:
             eval(args[0])
         except NameError:
-            print("** class doesn't exist **")
+            print(HBNBcommand.__errors[1])
             return
 
         k = f"{args[0]} . {args[1]}"
         k = f"{args[0]} . {args[1]}"
 
         try:
-#            value = obj_dict[k]
             print(obj_dict[k])
         except KeyError:
-            print("** no instance found **")
+            print(HBNBcommand.__errors[3])
 
 
 if __name__ == "__main__":
