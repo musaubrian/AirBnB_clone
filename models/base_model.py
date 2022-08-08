@@ -54,3 +54,11 @@ class BaseModel:
         return (
                 f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
                 )
+
+    def __repr__(self) -> str:
+        """
+        returns official string representation of the class instance
+        """
+        return (
+                f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+                )

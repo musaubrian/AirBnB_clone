@@ -15,7 +15,10 @@ from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
-    handle the commands
+    defines the airbnb command interpretor
+
+    args:
+    Cmd - handles command input
     """
 
     prompt = "(hbnb) "
@@ -45,8 +48,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """
-        handles `quit` command,
-        exits the interpretor
+        Quit command to exit the program
         """
         return True
 
@@ -209,7 +211,6 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(val)
         print(len(obj_list))
 
-
     def default(self, args):
         '''
             Catches all the function names that are not expicitly defined.
@@ -224,9 +225,9 @@ class HBNBCommand(cmd.Cmd):
             cmd_arg = args[0] + " " + args[2]
             func = functions[args[1]]
             func(cmd_arg)
-        except:
+        except NameError:
             print("*** Unknown syntax:", args[0])
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     HBNBCommand().cmdloop()

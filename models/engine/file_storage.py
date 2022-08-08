@@ -26,9 +26,9 @@ class FileStorage:
             obj: instance object
         """
 
-        k = f"{obj.__class__.__name__}.{obj.id}"
-        v = obj
-        FileStorage.__objects[k] = v
+        key = str(obj.__class__.__name__) + "." + str(obj.id)
+        val = obj
+        FileStorage.__objects[key] = val
 
     def save(self):
         """
@@ -54,4 +54,4 @@ class FileStorage:
                 class_name = models.my_classes[class_name]
                 FileStorage.__objects[k] = class_name(**v)
         except FileNotFoundError:
-            print("creating file")
+            pass
