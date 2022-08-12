@@ -32,7 +32,6 @@ button:hover {
 	height: 100%;
 	width: 25%;
 }
-
 .locations h3,
 .locations h4,
 .amenities h3,
@@ -50,4 +49,21 @@ h4 {
 	margin: 0;
 	font-weight: 400;
 	font-size: 14px;
+}
+
+.popup {
+	visibility: hidden;
+	padding: 0.5rem;
+	margin: 1rem auto auto auto;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	list-style: none;
+	background-color: #FAFAFA;
+}
+
+.locations:hover .popup{
+	visibility: visible;
+}
+.amenities:hover .popup {
+	visibility: visible;
 }
